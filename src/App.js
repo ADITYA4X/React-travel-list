@@ -24,9 +24,21 @@ function Form() {
     <h3>What do you for your Trip 😍</h3>
   </div>
 };
+
 function PackinList() {
-  return <div className="list">LIST</div>
+  return 
+    <ul className="list">
+      {initialItems.map((item)=> (<Item item={item}/>))}
+    </ul>
 };
+
+function Item({item}) {
+  return <li>{item.description}</li>
+}
+
+
+
+
 function Stats() {
   return <footer className="stats">
     <em>
