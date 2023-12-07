@@ -31,10 +31,15 @@ function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
+
+    if (!description) return;
 
     const newItem = { description, quantity, packed: false, id: Date.now() };
     console.log(newItem);
+
+    setDescription("");
+    setQuantity(1);
   }
 
   return (
