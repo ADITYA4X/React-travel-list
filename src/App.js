@@ -8,7 +8,6 @@ import { useState } from "react";
 
 export default function App() {
   const [items, setItems] = useState([]);
-  const numItems = items.length;
 
   function handleAddItems(item) {
     setItems((items) => [...items, item]);
@@ -35,7 +34,7 @@ export default function App() {
         onDeleteItems={handleDeleteItems}
         onToggleItems={handleToggleItem}
       />
-      <Stats />
+      <Stats items={items} />
     </div>
   );
 }
@@ -59,7 +58,7 @@ function Form({ onAddItems }) {
     if (!description) return;
 
     const newItem = { description, quantity, packed: false, id: Date.now() };
-    console.log(newItem);
+    // console.log(newItem);
 
     onAddItems(newItem);
 
@@ -124,11 +123,16 @@ function Item({ item, onDeleteItems, onToggleItems }) {
   );
 }
 
-function Stats() {
+function Stats({ items }) {
+  const numItems = items.length;
+  const numPacked = items.filter((item) => item.packed).length;
+
   return (
     <footer className="stats">
       <em>
-        🧳You have X items in your list 📃, and you already packed X (X%).
+        🧳You have {numItems} items in your list 📃, and you already packed{" "}
+        {numPacked}
+        (X%).
       </em>
     </footer>
   );
