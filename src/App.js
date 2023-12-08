@@ -103,6 +103,14 @@ function PackinList({ items, onDeleteItems, onToggleItems }) {
           />
         ))}
       </ul>
+
+      <div>
+        <select>
+          <option value="input">Sort by input order</option>
+          <option value="description">Sort by description</option>
+          <option value="packed">Sort by packed status</option>
+        </select>
+      </div>
     </div>
   );
 }
@@ -124,6 +132,13 @@ function Item({ item, onDeleteItems, onToggleItems }) {
 }
 
 function Stats({ items }) {
+  if (!items.length)
+    return (
+      <p className="stats">
+        <em>Start adding some items to your packing list 🚀</em>
+      </p>
+    );
+
   const numItems = items.length;
   const numPacked = items.filter((item) => item.packed).length;
   const percentage = (numPacked / numItems) * 100;
